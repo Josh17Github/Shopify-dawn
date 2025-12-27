@@ -1,0 +1,64 @@
+{{ 'promotional-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="promo-banner" id="promo-banner--{{ section.id }}">
+  <div class="promo-overlay"></div>
+    <img
+        src="{{ section.settings.image_with_text_image | image_url: width: 1200 }}"
+        class="image"
+        width="100%"
+        height="100%"
+        loading="lazy"
+    >
+  <div class="promo-content">
+    <h2>{{ section.settings.titleHeader }}</h2>
+    <p>{{ section.settings.description }}</p>
+    
+    <a href="{{ section.settings.button_link }}" class="promo-btn">
+      {{ section.settings.button }}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Promotional Banner",
+        "settings": [
+            {
+                "type": "text",
+                "id": "titleHeader",
+                "label": "Title",
+                "default": "Visit A Showroom"
+            },
+            {
+                "type": "text",
+                "id": "description",
+                "label": "Description",
+                "default": "Unlike most flooring manufactures, we have beautiful show rooms where you can see and feel our products for yourself"
+            },
+            {
+                "type": "text",
+                "id": "button",
+                "label": "Button",
+                "default": "SEE LOCATION"
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Anchor link"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_with_text_image",
+                "label": "Image"
+            }
+        ],
+        "presets": [
+          {
+            "name": "Promotional Banner",
+            "settings": {
+              
+            }
+          }
+        ],
+    }
+{% endschema %}
