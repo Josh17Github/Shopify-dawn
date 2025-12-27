@@ -1,0 +1,201 @@
+<section class="enquiry-section">
+    <div class="enquiry-container">
+        <div class="enquiry-description">
+            <h1 class="speakDescription">Speak to us today, we're here to help</h1>
+            <p class="subDescription">Use the form to submit an enquiry or give us a call:</p>
+            <button class="speech-btn">1800 Speech</button>
+        </div>
+        <div class="form-enquiry-section">
+            <form action="#" id="form-enquiry">
+                <div class="input-group">
+                    <input type="fullname" class="fullname" id="fullname" placeholder="Full name" required>
+                    <input type="email" class="email" id="email" placeholder="Email Address">
+                    <input type="contact" class="contact" id="contact" placeholder="Contact number">
+                    <input type="text" class="enquiry" class="enquiry" id="enquiry" placeholder="Enquiry Type">
+                </div>
+                <textarea class="text-area" placeholder="How can we help you?"></textarea>
+            </form>
+            <button class="submit-equiry">Send enquiry <i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+</section>
+
+{% style %}
+  .enquiry-section {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 238, 0);
+  }
+  .enquiry-container {
+    width: 1024px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  .enquiry-description {
+    flex-basis: 50%;
+    padding: 0 50px 10px 20px;
+    line-height: 24px;
+  }
+  .speakDescription {
+    font-size: 43px;
+    font-weight: 700;
+    font-family: sans-serif;
+    color:  #1a237e;
+    padding-right: 40px;
+    text-transform: uppercase;
+    margin-top: -20px;
+    margin-bottom: 2px;
+  }
+  .subDescription {
+    color:  #1a237e;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: -10px;
+  }
+  .speech-btn {
+    text-align: center;
+    width: 180px;
+    padding: 10px 0;
+    background-color:  #1a237e;
+    border: none;
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .form-enquiry-section {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #form-enquiry{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+ .input-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+ }
+ .text-area {
+    padding: 5px 10px;
+    border: none;
+ }
+ .submit-equiry {
+    color: #1a237e;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 800;
+    background-color: transparent;
+    align-self: right;
+    border: none;
+    text-align: right;
+    cursor: pointer;
+ }
+
+  input[type="fullname"], input[type="email"],input[type="contact"], input[type="text"] {
+        width: 100%;
+        padding: 10px 15px 10px 15px;
+        border: 1px solid rgb(228, 228, 228);
+        border-radius: 2px;
+        font-size: 12px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        color: #000000;
+     }
+     input[type="fullname"]:focus, input[type="email"]:focus,input[type="contact"], input[type="text"], textarea:focus {
+        border-color: #007BFF;
+        outline: none;
+        border: none;
+     }
+
+     @media (max-width: 980px) {
+
+        .enquiry-container {
+          display: flex;
+          flex-direction: column;
+          margin-top: 100px;
+          height: 100vh;
+      }
+        .enquiry-description {
+            flex-basis: 30%;
+            line-height: 40px;
+            text-align: center;
+            padding: 50px 10px;
+        }
+        .form-enquiry-section {
+            flex-basis: 0;
+            width: 80%;
+        }
+        .speakDescription {
+          padding: 0;
+          font-size: 34px;
+        }
+        .fa-paper-plane {
+            visibility: visible;
+        }
+     }
+     @media screen and (max-width: 480px) {
+      .enquiry-section {
+        height: 100vh;
+      }
+      .enquiry-container {
+        height: 100%;
+        margin-top: 0;
+        gap: 0;
+      }
+        .speakDescription {
+          padding: 0;
+          font-size: 34px;
+      }
+      .subDescription {
+          font-size: 12px;
+      }
+      .form-enquiry-section {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+          padding: 0 10px 20px 10px;
+          flex-basis: 0;
+      }
+      #form-enquiry {
+          display: flex;
+          gap: 10px;
+          flex-direction: column;
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+     }
+    
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "Enquiry Form",
+        "settings": [
+        
+        ],
+        "presets": [
+            {
+                "name": "Enquiry Form"
+            },
+        ]
+    }
+{% endschema %}

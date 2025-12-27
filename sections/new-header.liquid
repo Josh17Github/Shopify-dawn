@@ -1,0 +1,245 @@
+<header class="new-header">
+    <div class="header-bar">
+        <div class="logo">
+            {% if section.settings.soundwaveLogo != null %}
+                <img src="{{ section.settings.soundwaveLogo | img_url: 'master' }}" width="120" height="40">
+            {% else %}
+                <img src="{{ 'Just-Kids-Speech.png' | asset_url }}" width="120" height="40">
+            {% endif %}
+            <p>{{ section.settings.textLogo }}</p>
+        </div>
+        <nav>
+            <ul class="nav-menu" id="navi-list">
+                {% for link in linklists[section.settings.menu].links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}    
+                <i class="fa-solid fa-cart-shopping fab-logo"></i>
+                <i class="fab fa-facebook fab-logo"></i>
+                <i class="fa-brands fa-instagram fab-logo"></i>
+                <i class="fa-brands fa-linkedin fab-logo"></i>
+                <div class="speak-to-us-btn">Speak To Us</div>
+            </ul>
+        </nav>
+        <div class="humberger-menu" id="humberger">
+            <div class="menu-line"><p></p></div>
+            <div class="menu-line"><p></p></div>
+            <div class="menu-line"><p></p></div>
+        </div>
+    </div>
+</header>
+
+{% style %}
+    .humberger-menu {
+        display: none;
+    }
+  .new-header {
+    max-width: 100%;
+    background-color:rgb(255, 238, 0);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     
+  }
+  .header-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 2px;
+    position: relative;
+  }
+
+    .menu-line {
+        width: 35px;
+        height: 4px;
+        margin: 5px auto;
+        background-color: rgb(0, 38, 141);  
+    }
+  .logo img {
+    margin-bottom: -10px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .fab-logo {
+    font-size: 25px;
+    color:rgb(0, 38, 141);
+    margin-left: -14px;
+    text-align: center;
+  }
+  .fa-instagram {
+    margin-left: -20px;
+  }
+  .logo p {
+    margin-left: 5px;
+    font-size: 10px;
+    color:rgb(0, 38, 141);
+    font-weight: 200;
+    font-family: "Lucida Handwriting", "Cursive";
+  }
+  .speak-to-us-btn {
+    width: 95px;
+    height: 35px;
+    background-color:rgb(11, 34, 139);
+    text-align: center;
+    font-size: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 8px 5px 12px;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+    nav {
+        display: flex;
+        justify-content: flex-end;
+ }
+    nav .nav-menu {
+        list-style-type: none;
+        display: flex;
+        gap: 27px;
+        align-items: center;
+    }
+    nav li, a {
+        color:rgb(0, 38, 141);
+        display: inline-block;
+        cursor: pointer;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav li ,a:hover {
+        color: #032bdb;
+    }      
+
+    @media (max-width: 1200px) {
+        .header-bar {
+            width: 100%;
+            padding: 10px;
+        }
+        .logo img {
+            width: 80px;
+            height: 30px;
+        }
+        .logo p {
+            font-size: 10px;
+        }
+        nav li, a {
+            font-size: 16px;
+        }
+        nav .nav-menu {
+            gap: 18px;
+        }
+        .fab-logo {
+            font-size: 20px;
+        }
+        .speak-to-us-btn {
+            font-size: 10px;
+            width: 90px;
+            height: 35px;
+            margin-left: -10px;
+        }
+    }
+    @media (max-width: 980px) {
+        .header-bar {
+            padding: 40px;
+        }
+        nav li, a {
+            font-size: 20px;
+            padding: 10px 0;
+        }
+        .humberger-menu {
+            display: block;
+            position: absolute;
+            right: 40px;
+            top: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .logo {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        .nav-menu {
+            position: absolute;
+            flex-direction: column;
+            background-color: rgb(255, 238, 0);
+            top: 80%;
+            width: 100%;
+            left: 0;
+            padding: 50px 10px 50px 10px;
+            height: auto;
+            visibility: hidden;
+            z-index: 3;
+        }
+        li {
+        border-bottom: 1px solid #00000040;;
+        width: 100%;
+        text-align: center;
+        }
+        i, .speak-to-us-btn {
+            visibility: hidden;
+        }
+        .active-nav {
+            visibility: visible;
+        } 
+    }
+
+    /* @media (max-width: 480px) {
+        .new-header {
+            padding: 10px 20px;
+        }
+        .new-header .logo p {
+            font-size: 14px;
+        }
+        nav li{
+            font-size: 14px;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+    } */
+{% endstyle %}
+
+<script>
+    let humberger = document.getElementById('humberger');
+    let navList = document.getElementById('navi-list');
+
+    humberger.addEventListener('click', () => {
+        navList.classList.toggle('active-nav');
+    })
+</script>
+
+{% schema %}
+{
+    "name": "New Header",
+    "settings": [
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu links",
+        },
+        {
+            "type": "image_picker",
+            "id": "soundwaveLogo",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "textLogo",
+            "label": "Heading",
+            "default": "Logo Title"
+        }
+    ],
+    "presets": [
+        {
+            "name": "New Header" 
+        }
+    ]
+}
+{% endschema %}

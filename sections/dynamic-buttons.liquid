@@ -1,0 +1,102 @@
+<section class="blocks-playground">
+    <div class="playground-color" style="background: {{ section.settings.boxPlagroundColor }}">Playground</div>
+    <div class="buttons">
+        {% for block in section.blocks %}
+            <button class="btn" style="background: {{ block.settings.btnColor }}; color: {{ block.settings.labelColor }};">{{ block.settings.btnColorName }}</button>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    const btnColor = document.querySelectorAll('.btn')
+    const boxColor = document.querySelector('.playground-color')
+    
+    btnColor.forEach(btns => { 
+        btns.addEventListener('click', change); 
+            function change() {
+                console.log('Test', btns); 
+                boxColor.style.background = btns.style.background
+        }; 
+    })
+    
+</script>
+
+{%  style %}
+    .blocks-playground {
+        width: 100%;
+        height: 100vh;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .playground-color {
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+        text-align:center;
+    }
+    .buttons {
+        width: 70%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 10px;
+        
+    }
+    .btn {
+        width: 150px;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 20px 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "Blocks Playground",
+        "settings": [
+            {
+                "type": "color_background",
+                "id": "boxPlagroundColor",
+                "label": "Box Playground Color",
+                "default": "linear-gradient(#ffffff,rgba(0, 0, 0, 0))"
+              }
+        ],
+        "blocks": [
+            {
+                "type": "button",
+                "name": "button",
+                "limit": 6,
+                "settings": [
+                    {
+                        "type": "color",
+                        "id": "labelColor",
+                        "label": "Label Color",
+                        "default": "#000000"
+                    },
+                    {
+                        "type": "text",
+                        "id": "btnColorName",
+                        "label": "Button Label"
+                    },
+                    {
+                        "type": "color_background",
+                        "id": "btnColor",
+                        "label": "Button Color",
+                        "default": "linear-gradient(#ffffff,rgba(0, 0, 0, 0))"
+                    }
+                ]
+            },
+        ],
+        
+        "presets": [
+            {
+                "name": "Blocks Playground"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,244 @@
+<section class="discover-section" style="flex-direction: {{ section.settings.changeLayout }};">
+    <div class="discover">
+        <h1>{{ section.settings.discoverHeading }}</h1>
+        <div class="icon-music">
+            {% for block in section.blocks %}
+                <div class="icons" style="background-color:{{ block.settings.bgColor }};">
+                    <i class="icon fa-solid {{ block.settings.iconText}}"></i>
+                    <p>{{ block.settings.iconLabel }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <p class="discription">{{ section.settings.discoverContent }}</p>
+    </div>
+    <div class="image-section">
+        {% if section.settings.discoverImage != null %}
+            <img src=" {{ section.settings.discoverImage | img_url: "master" }}" width="400" height="400">
+        {% else %}
+            <img src="{{ 'music-cover.png' | asset_url }}" width="400" height="400">
+        {% endif %}
+    </div>
+</section>
+
+{% style %}
+    .discover-section {
+        width: 100%;
+        height: 130vh;
+        background-color: #2F303A;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 120px;
+        gap: 20px;
+    }
+    .discover h1 {
+        font-size: {{ section.settings.font_size }}px;
+        color: #ffffff;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .icons {
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        padding: 20px 35px 0px 35px;
+    }
+    .discover {
+        margin-top: -20px;
+    }
+    .icon-music {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .icons p {
+        color: #ffffff;
+        font-weight: 400;
+        
+    }
+    .discription {
+        color: #ffffff;
+        font-size: 38px;
+        font-weight: 400;
+        margin-top: 10px;
+        margin-bottom: -20px;
+        line-height: 48px;
+    }
+    @media (max-width: 1200px) {
+        .discover-section {
+            width: 100%;
+            padding: 0px 50px;
+        }
+        .discover h1 {
+            font-size: 60px;
+        }
+        .icons {
+            font-size: 24px;
+        }
+        .discription {
+            font-size: 24px;
+        }
+    }
+    @media (max-width: 989px) {
+        .discover-section {
+            width: 100%;
+            display: flex;
+            flex-flow: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+        }
+        .discover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 50px;
+        }
+        .discover h1 {
+            font-size: 50px;
+        }
+        .icons {
+            font-size: 20px;
+        }
+        .discription {
+            font-size: 24px;
+            line-height: 35px;
+            text-align: center;
+        }
+        .image-section img {
+           width: 350px;
+           height: 350px; 
+        }
+    }
+    @media (max-width: 630px) {
+        .discover-section {
+            padding: 0px 40px;
+            gap: 50px;
+        }
+        .discover h1 {
+            font-size: 45px;
+        }
+        
+        .discription {
+            font-size: 18px;
+            line-height: 30px;
+        }
+        .icons {
+            font-size: 15px;
+            padding: 14px 20px 0px 20px;
+        }
+    }
+    @media (max-width: 480px) {
+        .discover-section {
+            padding: 0px 50px;
+            height: 100vh;
+            gap: 100px;
+        }
+        .discover h1 {
+            font-size: 28px;
+        }
+        .icons {
+            font-size: 10px;
+            padding: 10px 15px 0px 15px;
+        }
+        .icon-music {
+            gap: 20px;
+        }
+        .image-section img {
+           width: 200px;
+           height: 200px; 
+        }
+        .discription {
+            font-size: 16px;
+            line-height: 30px;
+            padding: 0px;
+        }
+    }
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "discover-music-section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "discoverHeading",
+                "label": "Heading Discover",
+                "default": "Discover new music"
+            },
+            {
+                "type": "range",
+                "id": "font_size",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "label": "Font size",
+                "default": 70
+            },
+            {
+                "type": "textarea",
+                "id": "discoverContent",
+                "label": "Discover Content",
+                "default": "By joining you can benefit by listening to the latest albums released"
+            },
+            {
+                "type": "image_picker",
+                "id": "discoverImage",
+                "label": "Discover Image"
+            },
+            {
+                "type": "select",
+                "id": "changeLayout",
+                "options": [
+                  {
+                    "value": "row",
+                    "label": "Text First"
+                  },
+                  {
+                    "value": "row-reverse",
+                    "label": "Form First"
+                  }
+                ],
+                "default": "row",
+                "label": "Swap Text and Image"
+              },
+        ],
+        "blocks": [
+            {
+                "type": "icon",
+                "name": "icon",
+                "limit": 3,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "iconText",
+                        "label": "text"
+                    },
+                    {
+                        "type": "text",
+                        "id": "iconLabel",
+                        "label": "label"
+                    },
+                    {
+                        "type": "color_background",
+                        "id": "bgColor",
+                        "label": "Bg Color",
+                        "default": "linear-gradient(#ffffff, #000000)"
+                    }
+                ]
+            },
+        ],
+          "presets": [
+            {
+                "name": "discover-music-section"
+            }
+          ]
+    }
+{% endschema %}

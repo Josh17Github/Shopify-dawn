@@ -1,0 +1,161 @@
+<section class="speech-banner" style="background-color: {{ section.settings.banneBg }};">
+    <div class="banner-speech-container">
+        <h3 class="sub-heading"> {{ section.settings.bannerSubHeading }} </h3>
+        <h1 class="heading-title"> {{ section.settings.bannerHeading }} </h1>
+        {% if section.settings.imageSpeechBanner != null %}
+            <img src="{{ section.settings.imageSpeechBanner | img_url: "master" }}" width="950" height="700">
+        {% else %}
+            <img src="{{ 'image-banner.jpg' | asset_url }}" width="950" height="700">
+        {% endif %}
+    </div>
+</section>
+
+{%  style %}
+.speech-banner {
+    height: 50vh;
+}
+.banner-speech-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    padding-top: 40px;
+    margin-bottom: -100px;
+}
+.sub-heading {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: -14px;
+}
+.heading-title {
+    color: #ffffff;
+    margin: 15px;
+    padding-bottom: 10px;
+    font-size: 40px;
+    font-family: cursive;
+    font-weight: 700;
+}
+.banner-speech-container img {
+    border-radius: 5px;
+    z-index: 2;
+}
+/* @media (min-width: 1025px) {
+    .speech-banner {
+    height: 80vh;
+}
+    .banner-speech-container {
+        height: 80vh;
+        margin-bottom: 100px;
+    }
+} */
+
+/* @media (max-width: 1024px) {
+    .speech-banner  {
+        height: 80vh;
+    }
+    .banner-speech-container {
+        height: 80vh;
+        margin-bottom: 100px;
+    }
+    .banner-speech-container img {
+        width: 800px;
+        height: 500px;
+    }
+} */
+@media screen and (max-width: 980px) {
+    .speech-banner  {
+        height: 80vh;
+    }
+    .banner-speech-container {
+        height: 80vh;
+        margin-bottom: 0;
+    }
+    .speech-banner  {
+        height: 40vh;
+    }
+    .banner-speech-container {
+        height: 40vh;
+    }
+    .banner-speech-container img {
+        width: 700px;
+        height: 400px;
+    }
+}
+@media (max-width: 700px) {
+    .speech-banner  {
+        height: 40vh;
+    }
+    .heading-title {
+        font-size: 30px;
+    }
+    .sub-heading {
+        font-size: 14px;
+    }
+    .banner-speech-container {
+        height: 40vh;
+    }
+    .banner-speech-container img {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-width: 480px) {
+    .heading-title {
+        font-size: 20px;
+    }
+    .sub-heading {
+        font-size: 12px;
+    }
+    .speech-banner  {
+        height: 40vh;
+    }
+    .banner-speech-container {
+        height: 40vh;
+    }
+    .banner-speech-container img {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "Banner Section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "imageSpeechBanner",
+                "label": "Image Banner",
+            },
+            {
+                "type": "color_background",
+                "id": "banneBg",
+                "label": "Background",
+                "default": "linear-gradient(#ffffff, #000000)"
+            },
+            {
+                "type": "text",
+                "id": "bannerHeading",
+                "label": "Heading",
+                "default": "Speech For Kids Programs"
+            },
+            {
+                "type": "text",
+                "id": "bannerSubHeading",
+                "label": "Sub Heading",
+                "default": "Programs"
+            },
+            
+        ],  
+        "presets": [
+            {
+                "name": "Banner Section"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,256 @@
+<div class="product_collection_yakuru">
+    <div class="collection_container_yakuru swiper">
+        <h1 class="product_title product_title">{{ section.settings.headingText }}</h1>
+        <span class="featured_nav featured_nav">Featured</span>
+        <div class="product_details swiper-wrapper">
+            {% for block in section.blocks %}
+                <div class="carts__details fade swiper-slide">
+                    <div class="image_with_details ">
+                        {% if block.settings.imgPicker != null %}
+                            <img class="img" src="{{ block.settings.imgPicker | img_url: "master" }}" width="300" height="300">
+                        {% else %}
+                            <img class="img" src="{{ 'img-yakuru-green.jpg' |  asset_url }}" width="300" height="300">
+                        {% endif %}
+                        <div class="details__text">
+                            <p class="best_seller">Best seller</p>
+                            <p class="brand_name brand_name">{{  block.settings.producName }}</p>
+                            <p class="ratings">***** 50+ Satisfied Customers</p>
+                        </div>
+                    </div>
+                    <button class="add_to_cart_btn"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                </div>
+            {% endfor %} 
+        </div>
+        <div class="swiper-pagination"></div>
+    
+        {% comment %} <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> {% endcomment %}
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
+
+{%  style %}
+    .product_collection_yakuru {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
+    .collection_container_yakuru {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        gap: 30px;
+        padding: 40px 20px;
+        height: auto;
+        width: 1200px;
+    }
+    .featured_nav {
+        text-align: right;
+        font-weight: 700;
+        width: 80%;
+    }
+    .product_details {
+        padding: 0 10px;
+    }
+    .carts__details {
+        justify-items: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+    }
+    .image_with_details {
+        border: 1.5px solid #000000;
+        border-radius: 18px;
+        height: 450px;
+    }
+    .image_with_details img {
+        border-radius: 18px 18px 0 0;
+        object-fit: cover;
+        max-width: 100%;
+        cursor: pointer;
+        transition: scale 400ms;
+    }
+    .image_with_details img:hover {
+        scale: 99%;
+    }
+    .details__text {
+        bottom: 0;
+        padding: 30px 0 0 27px;
+        margin-bottom: 15px;
+    }
+    
+    .image_with_details p {
+        margin: 2px;
+        color:rgb(0, 0, 0);
+    }
+    .best_seller {
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .brand_name {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 25px;
+        width: 80%;
+    }
+    .ratings {
+        font-size: 8px;
+        font-weight: 600;
+    }
+    .fa-solid {
+        font-size: 12px;
+    }
+    .add_to_cart_btn {
+        width: 132px;
+        font-size: 15px;
+        padding: 12px 14px;
+        border-radius: 30px;
+        background-color: black;
+        color: #ffffff;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease-out;
+    }
+    .add_to_cart_btn:hover {
+        background-color:rgb(0, 115, 209);
+    }
+    @media (max-width: 1199px) {
+        .product_collection_yakuru {
+            width: 100%;
+        }
+    }
+    @media (max-width: 1024px) {
+        .product_collection_yakuru {
+            width: 100%;
+        }
+        .collection_container_yakuru {
+            width: 100%;
+        }
+        .brand_name {
+            font-size: 18px;
+        }
+        .best_seller {
+            font-size: 10px;
+        }
+        .ratings {
+            font-size: 7px;
+        } 
+    }
+    @media (max-width: 980px) {
+        .best_seller {
+            font-size: 12px;
+        }
+        .brand_name {
+            font-size: 22px;
+        }
+        .ratings {
+            font-size: 8px;
+        } 
+        /* .dots {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            transition: background-color 0.6s ease;
+            margin: 0 auto;
+        } */
+    }
+
+{% endstyle %}
+
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters  
+        loop: true,
+        slidesPerView: 1,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+      
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
+      
+        // Navigation arrows
+        {% comment %} navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }, {% endcomment %}
+      
+        // And if we need scrollbar
+        {% comment %} scrollbar: {
+          el: '.swiper-scrollbar',
+        }, {% endcomment %}
+        breakpoints: {
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            980: {
+              slidesPerView: {{ section.settings.viewPerPage }},
+              spaceBetween: 20,
+            },
+        },
+      });
+
+</script>
+{% schema %}
+    {
+        "name": "New featured product",
+        "settings": [
+            {
+                "type": "text",
+                "id": "headingText",
+                "label": "Heading",
+                "default": "Yakuru Product Collection"
+            },
+            {
+                "type": "range",
+                "id": "viewPerPage",
+                "min": 3,
+                "max": 5,
+                "step": 1,
+                "label": "Product Per Page",
+                "default": 3
+            }
+            
+        ],
+        "presets": [
+            {
+                "name": "New featured product"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "Product",
+                "name": "Products",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "imgPicker",
+                        "label": "Choose Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "producName",
+                        "label": "Product Name",
+                        "default": "Product Name"
+                    },
+                    
+                ]
+            },
+        ]
+        
+    }
+{% endschema %}

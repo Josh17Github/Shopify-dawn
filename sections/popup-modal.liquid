@@ -1,0 +1,261 @@
+<div class="popup-modal">
+    <h1>{{  section.settings.firstHeading }}</h1>
+    <h2>{{  section.settings.subHeading }}</h2>
+    <button class="open-btn" onclick="openPopup()">{{ section.settings.btn }}</button>
+
+    <div class="popup" id="popup" style="background: {{ section.settings.modalBackgroundColor }}">
+        <button class="close-btn" onclick="closePopup()">x</button>
+        {%  if section.settings.modalImage != null %}
+            <img src="{{ section.settings.modalImage | img_url: 'master' }}" width="400" height="300">
+        {% else %}
+            <img src="{{ 'music-cover.png' | asset_url }}" width="400" height="300">
+        {%  endif %}
+        <h1>{{  section.settings.popupHeading }}</h1>
+        <h2>{{  section.settings.popupSubHeading }}</h2>
+    </div>
+    
+</div>
+
+<script>
+
+    let popup = document.getElementById('popup')
+    
+    const openPopup = () => {
+        popup.classList.add('open-popup')
+    }
+    const closePopup = () => {
+        popup.classList.remove('open-popup')
+    }
+
+</script>
+
+{% style %}
+  .popup-modal {
+    width: 100%;
+    height: 110vh;
+    padding: 100px 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  h1 {
+    font-size: {{ section.settings.headingSize }};
+    margin-bottom: -10px;
+  }
+  .open-btn {
+    width: 170px;
+    height: 55px;
+    padding: 10px 20px;
+    background-color: {{ section.settings.backgroundBtn }};
+    text-align: center;
+    border-radius: 50px;
+    border: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffff;
+    outline: none;
+    cursor: pointer; 
+  }
+  .open-btn:hover {
+    background-color: #007BFF;
+  }
+  .popup {
+    width: 500px;
+    background: rgb(21, 101, 187);
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    border-radius: 6px;
+    transform: translate(-50%, 20%) scale(0.1);
+    text-align: center;
+    padding: 40px 50px 10px 50px;
+    transition: all 0.5s cubic-bezier(0.72, 0.16, 0.13, 0.67);
+    visibility: hidden;
+  }
+  .popup img {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  .close-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 4px 4px 5px 5px;
+    font-size: 12px;
+    background: {{  section.settings.modalCloseBtn }};    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 93%;
+    right: 2%;
+    color: #ffffff;
+    border: 0;
+  }
+  .close-btn:hover {
+    background-color: rgb(212, 0, 0);
+  }
+  .open-popup {
+    visibility: visible;
+    transform: translate(-50%, 40%) scale(1);
+  }
+
+  @media (max-width: 1024px) {
+    .popup-modal {
+        height: 120vh;
+    }
+  }
+  @media (max-width: 989px) {
+    .popup-moda {
+        height: 100vh;
+    }
+    .popup {
+        bottom: 50%;
+        left: 50%;
+    }
+    .open-btn {
+        width: 130px;
+        height: 42px;
+        font-size: 16px;
+    }
+  }
+  @media (max-width: 630px) {
+    .popup-modal {
+        height: 80vh;
+        align-items: center;
+    }
+    .popup {
+        width: 400px;
+        bottom: 40%;
+        left: 50%;
+    }
+    .open-btn {
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+    }
+    .popup img {
+        width: 300px;
+        height: 200px;
+    }
+    .close-btn {
+        bottom: 90%;
+        right: 3%;
+    }
+  }
+  @media (max-width: 480px) {
+    .popup-modal {
+        height: 70vh;
+        align-items: center;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .popup-modal h1 {
+        font-size: 30px;
+    }
+    .popup-modal h2 {
+        font-size: 18px;
+    }
+    .popup {
+        width: 250px;
+        bottom: 55%;
+        left: 50%;
+        padding: 30px 20px;
+    }
+    .popup img {
+        width: 200px;
+        height: 130px;
+    }
+    .popup h1 {
+        font-size: 20px;
+    }
+    .popup h2 {
+        font-size: 16px;
+    }
+    .close-btn {
+        bottom: 90%;
+        right: 3%;
+        font-size: 10px;
+        width: 20px;
+        height: 20px;
+
+    }
+  }
+
+{% endstyle %}
+
+
+{% schema %}
+    {
+        "name": "popup-modal",
+        "settings": [
+            {
+                "type": "text",
+                "id": "firstHeading",
+                "label": "First Heading",
+                "default": "This is a heading"
+            },
+            {
+                "type": "range",
+                "id": "headingSize",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "label": "Heading size",
+                "default": 12
+            },
+            {
+                "type": "text",
+                "id": "subHeading",
+                "label": "Sub Heading",
+                "default": "This is a sub heading"
+            },
+            {
+                "type": "text",
+                "id": "btn",
+                "label": "Button Click",
+                "default": "Click Me"
+            },
+            {
+                "type": "color_background",
+                "id": "backgroundBtn",
+                "label": "Button Color"
+            },
+            {
+                "type": "text",
+                "id": "popupHeading",
+                "label": "Modal Heading",
+                "default": "This is a heading"
+            },
+            {
+                "type": "text",
+                "id": "popupSubHeading",
+                "label": "Modal sub heading",
+                "default": "This is a sub heading"
+            },
+            {
+                "type": "image_picker",
+                "id": "modalImage",
+                "label": "Modal Image"
+            },
+            {
+                "type": "color_background",
+                "id": "modalBackgroundColor",
+                "label": "Modal Background Color"
+            },
+            {
+                "type": "color_background",
+                "id": "modalCloseBtn",
+                "label": "Modal Button Color",
+                "default": "rgb(22, 22, 22)"
+            }
+        ],
+        "presets": [
+            {
+                "name": "popup-modal"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,525 @@
+<section class="speech-section-content">
+    <div class="accordion-section">
+        {% for block in section.blocks %}
+         <div class="collapsible-container">
+                <div class="collapsible-section">
+                    <div class="collapsible-header">
+                        <span> {{ block.settings.accordionHeading }}</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                </div>
+                <div class="collapsible">
+                    {% comment %} first {% endcomment %}
+                    <div class="collapsible-content">
+                        {% if block.settings.cardImage1 != null %}
+                            <img src="{{ block.settings.cardImage1 | img_url: "master" }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}')">
+                        {% else %}
+                            <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}')">
+                        {% endif %}
+                        <div class="date-with-category">
+                            <div class="date">
+                                <p class="day">{{ block.settings.dateText1 }}</p>
+                                <p class="month">{{ block.settings.monthText1 }}</p>
+                            </div>
+                            <div class="categories">
+                                <p class="short-catergory">{{ block.settings.shortDescription1 }}</p>
+                                <p class="catergory">{{ block.settings.description1 }}</p>
+                            </div>
+                        </div>
+                        <div class="image-text" id="popup-modal--{{ block.id }}" style="background: {{ section.settings.modalBackgroundColor }}">
+                            <button class="close-btn-modal" onclick="closePopupModal('{{ block.id }}')">x</button>
+                            {%  if block.settings.cardImage1 != null %}
+                                <img src="{{ block.settings.cardImage1 | img_url: 'master' }}" width="600" height="200">
+                            {% else %}
+                                <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="600" height="200">
+                            {%  endif %}
+                            <div class="modal-view-text">
+                                <p class="short-catergory">{{ block.settings.shortDescription1 }}</p>
+                                <p class="catergory">{{ block.settings.description1 }}</p>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <ul class="cate-1">
+                                    <li>Praesent vestibulum dapibus nibh. Etiam ut purus</li>
+                                    <li>mattis mauris sodales aliquam. Maecenas vestibulum</li>
+                                    <li>mollis diam. Phasellus leo dolor, tempus non, auctor et,</li>
+                                    <li>hendrerit quis, nisi. Donec id justo.</li>
+                                </ul>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque 
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.  
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <button class="contact-us-btn">Contact Us Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} Second {% endcomment %}
+                    <div class="collapsible-content">
+                        {% if block.settings.cardImage2 != null %}
+                            <img src="{{ block.settings.cardImage2 | img_url: "master" }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}-second')">
+                        {% else %}
+                            <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}-second')">
+                        {% endif %}
+                        <div class="date-with-category">
+                            <div class="date">
+                                <p class="day">{{ block.settings.dateText2 }}</p>
+                                <p class="month">{{ block.settings.monthText2 }}</p>
+                            </div>
+                            <div class="categories">
+                                <p class="short-catergory">{{ block.settings.shortDescription2 }}</p>
+                                <p class="catergory">{{ block.settings.description2 }}</p>
+                            </div>
+                        </div>
+                        <div class="image-text" id="popup-modal--{{ block.id }}-second" style="background: {{ section.settings.modalBackgroundColor }}">
+                            <button class="close-btn-modal" onclick="closePopupModal('{{ block.id }}-second')">x</button>
+                            {%  if block.settings.cardImage2 != null %}
+                                <img src="{{ block.settings.cardImage2 | img_url: 'master' }}" width="600" height="200">
+                            {% else %}
+                                <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="600" height="200">
+                            {%  endif %}
+                            <div class="modal-view-text">
+                                <p class="short-catergory">{{ block.settings.shortDescription2 }}</p>
+                                <p class="catergory">{{ block.settings.description2 }}</p>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <ul class="cate-1">
+                                    <li>Praesent vestibulum dapibus nibh. Etiam ut purus</li>
+                                    <li>mattis mauris sodales aliquam. Maecenas vestibulum</li>
+                                    <li>mollis diam. Phasellus leo dolor, tempus non, auctor et,</li>
+                                    <li>hendrerit quis, nisi. Donec id justo.</li>
+                                </ul>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque 
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.  
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <button class="contact-us-btn">Contact Us Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} Third {% endcomment %}
+                    <div class="collapsible-content">
+                        {% if block.settings.cardImage3 != null %}
+                            <img src="{{ block.settings.cardImage3 | img_url: "master" }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}-third')">
+                        {% else %}
+                            <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="350" height="150" onclick="openPopupModal('{{ block.id }}-third')">
+                        {% endif %}
+                        <div class="date-with-category">
+                            <div class="date">
+                                <p class="day">{{ block.settings.dateText3 }}</p>
+                                <p class="month">{{ block.settings.monthText3 }}</p>
+                            </div>
+                            <div class="categories">
+                                <p class="short-catergory">{{ block.settings.shortDescription3 }}</p>
+                                <p class="catergory">{{ block.settings.description3 }}</p>
+                            </div>
+                        </div>
+                        <div class="image-text" id="popup-modal--{{ block.id }}-third" style="background: {{ section.settings.modalBackgroundColor }}">
+                            <button class="close-btn-modal" onclick="closePopupModal('{{ block.id }}-third')">x</button>
+                            {%  if block.settings.cardImage3 != null %}
+                                <img src="{{ block.settings.cardImage3 | img_url: 'master' }}" width="600" height="200">
+                            {% else %}
+                                <img src="{{ 'collapse-image-1.jpg' | asset_url }}" width="600" height="200">
+                            {%  endif %}
+                            <div class="modal-view-text">
+                                <p class="short-catergory">{{ block.settings.shortDescription2 }}</p>
+                                <p class="catergory">{{ block.settings.description2 }}</p>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <ul class="cate-1">
+                                    <li>Praesent vestibulum dapibus nibh. Etiam ut purus</li>
+                                    <li>mattis mauris sodales aliquam. Maecenas vestibulum</li>
+                                    <li>mollis diam. Phasellus leo dolor, tempus non, auctor et,</li>
+                                    <li>hendrerit quis, nisi. Donec id justo.</li>
+                                </ul>
+                                <p class="cate-1">Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque 
+                                ante vel mi. Praesent venenatis metus at tortor pulvinar varius. Curabitur turpis.  
+                                Vestibulum eu odio. Sed cursus turpis vitae tortor</p>
+                                <button class="contact-us-btn">Contact Us Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% style %}
+.speech-section-content {
+    padding-top: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+    position: relative;
+}
+.accordion-section {
+    width: 1100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 30px;
+    position: relative;
+}
+.collapsible-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.collapsible-section {
+    background-color: #f0f4ff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+.collapsible {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    overflow: hidden;
+    max-height: 0;
+     -webkit-transition: max-height 0.7s;
+    -moz-transition: max-height 0.7s;
+    transition: max-height 0.7s;
+}
+.collapsible.open {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-height: 300px;
+     -webkit-transition: max-height 0.7s;
+    -moz-transition: max-height 0.7s;
+    transition: max-height 0.7s;
+}
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1a237e;
+    width: 100%;
+}
+.arrow {
+  transition: transform 0.3s ease;
+}
+.collapsible-header:hover {
+  background-color: #e0e7ff;
+}
+.collapsible-content {
+  width: 100%;
+  height: 250px;
+  background-color:  #f0f4ff;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.collapsible-content img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+.collapsible-image-with-text {
+    width: 100%;
+    height: 100%;
+}
+.date-with-category {
+    display: flex;
+    flex-direction: row;
+    margin-top: -10px;
+    height: 100px;
+}
+.date {
+    background-color:rgb(247, 230, 0);
+    padding: 0 25px;
+    border-radius: 0 0 0 15px;
+    height: 100%;
+    line-height: 20px;
+    text-align: center;
+}
+.day {
+    color:  #1a237e;
+    font-size: 20px;
+    margin: 0;
+    padding-top: 30px;
+    font-weight: 700;
+}
+.month {
+    color:  #1a237e;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 700;
+}
+.categories {
+    height: 100%;
+    margin: 0;
+    padding-left: 15px;
+}
+.short-catergory {
+    padding-top: 8px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #021164;
+}
+.catergory {
+    line-height: 24px;
+    font-size: 18px;
+    color: #021164;
+    margin: 0;
+}
+
+.image-text {
+    width: 600px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, 20%) scale(0.1);
+    padding: 0 0 10px 0;
+    transition: all 0.5s cubic-bezier(0.72, 0.16, 0.13, 0.67);
+    visibility: hidden;
+    z-index: 3;
+    color: #1a237e;
+  }
+  .image-text img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .close-btn-modal {
+    width: 30px;
+    height: 34px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 300;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    color:rgb(0, 0, 0);
+    border: 0;
+    cursor: pointer;
+    background-color: transparent; 
+  }
+  .modal-view-text {
+    width: 100%;
+    padding: 10px 30px;
+  }
+  .cate-1 {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .contact-us-btn {
+    width: 180px;
+    height: 40px;
+    padding: 8px 0px 10px 0;
+    text-align: center;
+    background-color: rgb(247, 230, 0);
+    font-weight: 600;
+    color:  #1a237e;
+    border: none;
+    border-radius: 5px;
+  }
+  .open-modal {
+    visibility: visible;
+    transform: translate(-50%, 40%) scale(1);
+  }
+@media (max-width: 1024px) {
+    .accordion-section {
+        width: 100%;
+    }
+}
+@media (max-width: 980px) {
+    .day {
+        font-size: 20px;
+    }
+    .month {
+        font-size: 14px;
+    }
+    .short-catergory {
+        font-size: 11px;
+    }
+    .catergory {
+        font-size: 20px;
+        line-height: 19px;
+    }
+}
+@media (max-width: 480px) {
+    .speech-section-content {
+        height: 100vh;
+        padding-top: 100px;
+        padding-bottom: 0;
+    }
+    .accordion-section {
+        height: 100vh;
+    }
+}
+
+{% endstyle %}
+
+
+<script>
+    let headers = document.querySelectorAll('.collapsible-header');
+    let contents = document.querySelectorAll('.collapsible');
+
+    headers.forEach((header, index) => {
+        header.addEventListener('click', () => {
+            contents.forEach((content, contentIndex) => {
+                if(contentIndex !== index && content.classList.contains('open')) {
+                    content.classList.remove('open');
+                }
+            });
+
+            if (contents[index].classList.contains('collapsible')) {
+                contents[index].classList.toggle('open');
+            } else {
+                contents[index].classList.add('collapsible');
+            }
+        });
+    });
+
+    // modal content
+    let opupModal = document.getElementById('popup-modal')
+
+    const openPopupModal = (selector) => {
+        document.getElementById(`popup-modal--${selector}`).classList.add('open-modal')
+    }
+    const closePopupModal = (selector) => {
+        document.getElementById(`popup-modal--${selector}`).classList.remove('open-modal')
+    }
+
+</script>
+
+{% schema %}
+    {
+        "name": "Collapsible Section",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "accordionBg",
+                "default": "scheme_1",
+                "label": "Color scheme"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "Accordion",
+                "name": "Accordion",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "accordionHeading",
+                        "label": "Heading",
+                    },
+                    {
+                        "type": "header",
+                        "content": "Card 1",
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "cardImage1",
+                        "label": "Catergory Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "dateText1",
+                        "label": "Date text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "monthText1",
+                        "label": "Month text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "shortDescription1",
+                        "label": "Short description",
+                        "default": "Catergory name",
+                    },
+                    {
+                        "type": "text",
+                        "id": "description1",
+                        "label": "Description",
+                        "default": "Individual Program / Course title goes here.",
+                    },
+                    {
+                        "type": "header",
+                        "content": "Card 2",
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "cardImage2",
+                        "label": "Catergory Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "dateText2",
+                        "label": "Date text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "monthText2",
+                        "label": "Month text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "shortDescription2",
+                        "label": "Short description",
+                        "default": "Catergory name",
+                    },
+                    {
+                        "type": "text",
+                        "id": "description2",
+                        "label": "Description",
+                        "default": "Individual Program / Course title goes here.",
+                    },
+                    {
+                        "type": "header",
+                        "content": "Card 3",
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "cardImage3",
+                        "label": "Catergory Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "dateText3",
+                        "label": "Date text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "monthText3",
+                        "label": "Month text",
+                    },
+                    {
+                        "type": "text",
+                        "id": "shortDescription3",
+                        "label": "Short description",
+                        "default": "Catergory name",
+                    },
+                    {
+                        "type": "text",
+                        "id": "description3",
+                        "label": "Description",
+                        "default": "Individual Program / Course title goes here.",
+                    },
+                ],
+                
+            },
+        ],
+        
+        "presets": [
+            {
+                "name": "Collapsible Section"
+            }
+        ]
+    }
+{% endschema %}

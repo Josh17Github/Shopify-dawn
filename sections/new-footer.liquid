@@ -1,0 +1,129 @@
+<footer>
+    <div class="container">
+        <div class="footer-left">
+            <p class="text-left-footer highlight-text">Gold Coast</p>
+            <p class="text-left-footer">Coomera Clinic</p>
+            <p class="text-left-footer">The Hub - 16/90 Days Rd, Upper Coomera, Q 4209</p>
+            <p class="text-left-footer">Nerang Clinic</p>
+            <p class="text-left-footer">2/20 Nerang St, Nerang Q 4211</p>
+            <p class="text-left-footer highlight-text">Brisbane</p>
+            <p class="text-left-footer">Nundah Clinic</p>
+            <p class="text-left-footer">10 Gardner St, Nundah, Q 4012</p>
+        </div>
+        <div class="footer-mid">
+            {% for link in linklists[section.settings.footerMenu].links %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="footer-right">
+            <img src="{{ 'Just-Kids-Speech.png' | asset_url }}" width="120" height="40">
+            © S.P.E.E.C.H PTY LTD 2020. All rights recieved. <br/>
+            ABN 34 131 756 575.
+        </div>
+    </div>
+</footer>
+
+{% style %}
+footer {
+    background-color: #22317e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px 30px 10px;
+}
+.container {
+    width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+}
+.footer-left {
+    color: #ffffff;
+    font-size: 12px;
+    padding: 20px 10px;
+}
+.footer-left, .text-left-footer {
+    margin-bottom: -10px;
+}
+.highlight-text {
+    font-weight: bold;
+    font-size: 14px;
+}
+.footer-mid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 30px 10px 10px 30px;
+}
+.footer-mid a {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+}
+.footer-mid a:hover {
+    color: #032bdb;
+}
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    padding-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+    
+}
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 0px 5px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-left {
+        width: 100%;
+    }
+    .footer-mid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 10px 10px 10px 10px;
+        width: 100%;
+    }
+    .footer-left a, .footer-right a {
+        font-size: 14px;
+    }
+    .footer-left, .footer-right {
+        gap: 10px;
+    }
+    .footer-right, .fab {
+        margin-right: 5px;
+    }
+}
+
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "New Footer",
+        "settings": [
+            {
+                "type": "link_list",
+                "id": "footerMenu",
+                "label": "Footer menu"
+            },
+        ],
+        "presets": [
+            {
+                "name": "New Footer"
+            }
+        ]
+    }
+{% endschema %}

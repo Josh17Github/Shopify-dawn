@@ -1,0 +1,231 @@
+<section class="form-container" style="align-items: {{ section.settings.vertical_alignment }}; flex-direction: {{ section.settings.layout_Form }};">
+    <div class="fun-content">
+        <span class="form-text">{{ section.settings.formText }}</span>
+    </div>
+    <div class="form-content" id="formContent">
+        <form class="form" action="">
+            <label for="">Name:</label>
+            <input type="text" class="name" id="name">
+            <label for="">Email:</label>
+            <input type="email" class="email" id="email">
+            <label for="">Password:</label>
+            <input type="password" class="pass" id="pass">
+            <button type="submit" onclick="nameAlert()">Join Now</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    let inputName = document.querySelector(`.name`)
+     {% comment %}
+    let inputEmail = document.querySelector('.email')
+    let inputPass = document.querySelector('.pass') {% endcomment %}
+    let formText = document.querySelector('span');
+
+     const nameAlert = () => {
+        
+        formText.innerText = inputName.value;
+        console.log(inputName.value)
+       {% comment %} if (inputName.value === "Josh" && inputEmail.value === "jcabillan821@gmail.com" && inputPass.value === "123") {
+            
+        } else {
+            alert(`Hello: ${inputName.value}`)
+        }  {% endcomment %}
+    }
+</script> 
+
+{% style %}
+    .form-container {
+        background-color: #2F303A;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px 120px;
+        gap: 20px;
+    }
+    .fun-content {
+        margin-left: 50px;
+    }
+    span {
+        font-size: 72px;
+        font-weight: 600;
+        color: #fff;
+    }
+    .form-text .highlight {
+        color: {{ section.settings.colorChangge }};
+        font-size: 74px;
+        font-weight: 800;
+    }
+    .form {
+        width: 560px;
+        display: flex;
+        flex-direction: column;
+        padding: 60px 50px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #1d1b1b;
+        line-height: 60px;
+    }
+    label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #ffffff;
+        font-size: 24px;
+        padding-bottom: 5px;
+    }
+    input[type="text"], input[type="email"],input[type="password"], textarea {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #0573bd;
+        border-radius: 4px;
+        font-size: 24px;
+        box-sizing: border-box;
+        background-color: transparent;
+        color: #ffffff;
+     }
+     input[type="text"]:focus, input[type="email"]:focus,input[type="password"], textarea:focus {
+        border-color: #007BFF;
+        outline: none;
+     }
+     button[type="submit"] {
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size:24px;
+        cursor: pointer;
+        transition: 0.3s ease;
+     }
+     button[type="submit"]:hover {
+        background-color: #0056b3;
+     }
+
+     @media (max-width: 1200px) {
+        .form-container {
+            padding: 60px 50px;
+        }
+        .fun-content {
+            margin-left: 0px;
+        }
+        .form {
+            width: 100%;
+        }
+     }
+     @media (max-width: 989px) {
+        .form-container {
+            display: flex;
+            flex-flow: wrap;
+            justify-content: center;
+            padding: 60px 50px;
+        }
+        .form {
+            width: 560px;
+        }
+     }
+     @media (max-width: 600px) {
+        .form {
+            width: 100%;
+            padding: 30px 20px;
+        }
+        span {
+            font-size: 50px;
+        }
+        .form-text .highlight {
+            font-size: 50px;
+            margin-left: 5px;
+        }
+        .form-content label {
+            font-size: 15px;
+            padding: 0px;
+            margin: -12px 0px;
+         }
+        input[type="text"], input[type="email"], input[type="password"], textarea {
+            border-radius: 4px;
+            font-size: 15px;
+            padding: 10px;
+         }
+        button[type="submit"] {
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+        
+     }
+     @media (max-width: 480px) {
+        span {
+            font-size: 40px;
+        }
+        .form-text .highlight {
+            font-size: 40px;
+        }
+     }
+  
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "form-section",
+        "settings": [
+            {
+                
+                "type": "select",
+                "id": "vertical_alignment",
+                "label": "Vertical alignment",
+                "options": [
+                  {
+                    "value": "start",
+                    "label": "Top"
+                  },
+                  {
+                    "value": "center",
+                    "label": "Middle"
+                  },
+                  {
+                    "value": "end",
+                    "label": "Bottom"
+                  }
+                ],
+                "default": "center"
+              },
+              {
+                "type": "text",
+                "id": "formText",
+                "label": "Form text",
+                "default": "Join the fun",
+                "info": "Wrap the colored text to a <span class='highlight'></span>"
+                },
+                {
+                    "type": "color",
+                    "id": "colorChangge",
+                    "label": "Colored text's color",
+                    "default": "#E44087"
+                },
+              {
+                "type": "select",
+                "id": "layout_Form",
+                "options": [
+                  {
+                    "value": "row",
+                    "label": "Text First"
+                  },
+                  {
+                    "value": "row-reverse",
+                    "label": "Form First"
+                  }
+                ],
+                "default": "row",
+                "label": "Form replacement"
+              },
+        ],
+        "presets": [
+            {
+                "name": "form-section"
+            }
+        ]
+    }
+{% endschema %}

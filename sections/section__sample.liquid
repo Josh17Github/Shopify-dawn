@@ -1,0 +1,100 @@
+<section class="sample-math">
+    <div class="add-minus">
+        <h1>{{ section.settings.mathHeading }}</h1>
+        <input type="text" class="result">
+        <div class="buttonAddMinus">
+            <button class="minusBtn" id="subBtn">-</button>
+            <button class="addBtn" id="addBtn">+</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    let result = document.querySelector('.result')
+    let addButton = document.getElementById('addBtn')
+    let subtractButton = document.getElementById('subBtn')
+
+    addButton.addEventListener('click', addSomething)
+    subtractButton.addEventListener('click', subractSomething)
+
+    function addSomething() {
+        result.value++
+    }
+    function subractSomething() {
+        if(result.value > 0) {
+            result.value--;            
+        }
+    }
+
+
+    {% comment %} const = () => {
+        result.value++
+    }
+    addFunction()
+    const minusFunction = () => {
+        result.value--
+    }
+    minusFunction() {% endcomment %}
+
+
+</script>
+
+
+{% style %}
+        .sample-math {
+            width: 100%;
+            height: 100vh;
+            justify-items: center;
+            padding: 50px 0px;
+            background: rgb(180, 180, 180);
+            gap:100px;
+        }
+        .add-minus {
+            width: 500px;
+            height: 400px;
+            border: 1px solid black;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .result {
+            text-align: center;
+        }
+        .buttonAddMinus {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding-top: 50px;
+        }
+        .addBtn, .minusBtn {
+            width: 100%;
+            height: 40px;
+            background-color: "rgb(0, 57, 179)";
+            font-size: 25px;
+        }
+
+{% endstyle %}
+
+
+{% schema %}
+    {
+        "name": "Sample-math",
+        "settings" : [
+            {
+                "type": "text",
+                "id": "mathHeading",
+                "label": "Heading Title"
+            },
+            {
+                "type": "text_alignment",
+                "id": "text__alignment",
+                "label": "Text alignment"
+             }
+        ],
+        "presets": [
+            {
+                "name": "Sample-math"
+            }
+        ]
+    }
+{% endschema %}
